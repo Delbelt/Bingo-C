@@ -4,11 +4,12 @@
 #include <string.h>
 
 #include "jugador.h" //CLASE JUGADOR
+#include "carton.h" //CLASE CARTON
 
 int main() {
 	
 	printf ("NAHUEL FLORES\n");
-	printf ("PRIMER COMMIT - ESTRUCTURA INICIAL DEL TDA PARA EL PROYECTO BINGO EN C");
+	printf ("SEGUNDO COMMIT - ESTRUCTURA COMPLETA");
 	
 	
 	return 0;

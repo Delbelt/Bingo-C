@@ -1,8 +1,6 @@
 #ifndef JUGADOR_H_INCLUDED
 #define JUGADOR_H_INCLUDED
 
-#include "jugador.h"
-
 struct JugadorE; //Estructura Inicial
 
 typedef struct JugadorE *Jugador; //Puntero a estructura para optimizar cargas
