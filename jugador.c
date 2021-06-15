@@ -16,7 +16,7 @@
 		int dni;		
 		int cantCartones;
 		Carton Cartones[CANT_CARTONES];	
-		//int bola[90];			
+		//int bola[90];	POSIBLE A AGREGAR		
 		
 	};
 	
@@ -48,8 +48,53 @@ Jugador crearJugador(char nombre[],char alias[],int dni)
 	
 }
 
+//POSIBLEMENTE UN CONSTRUCTOR APARTE PARA EL BOT SIN EL DNI
+
 //DESTRUCTOR
 void destruirJugador(Jugador x)
 {
     free(x);
 }
+
+//METODOS SET
+void setNombre(Jugador x, char nombre[])
+{
+	strcpy (x->nombre,nombre);
+}
+
+void setAlias(Jugador x, char alias[])
+{
+	strcpy (x->alias,alias);
+}
+
+void setDni(Jugador x, int dni)
+{
+	x->dni = dni;
+}
+
+void setCantCartones(Jugador x, int cantCartones)
+{
+	x->cantCartones = cantCartones;
+}
+
+//METODOS GET
+char *getNombre(Jugador x)
+{
+	return x->nombre;
+}
+
+char *getAlias(Jugador x)
+{
+	return x->alias;
+}
+
+int getDni(Jugador x)
+{
+	return x->dni;	
+}
+
+int getCantCartones(Jugador x)
+{
+	return x->cantCartones;	
+}
+

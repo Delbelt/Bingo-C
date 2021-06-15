@@ -11,5 +11,17 @@ Jugador crearJugador(char nombre[],char alias[],int dni);
 //DESTRUCTOR
 void destruirJugador(Jugador x);
 
+//METODOS SET
+void setNombre(Jugador x, char nombre[]);
+void setAlias(Jugador x, char alias[]);
+void setDni(Jugador x, int dni);
+void setCantCartones(Jugador x, int cantCartones);
+
+//METODOS GET
+char *getNombre(Jugador x);
+char *getAlias(Jugador x);
+int getDni(Jugador x);
+int getCantCartones(Jugador x);
+
 #endif
 
