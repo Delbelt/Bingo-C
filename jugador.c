@@ -15,12 +15,13 @@
 		char alias[15];
 		int dni;		
 		int cantCartones;
-		Carton Cartones[CANT_CARTONES];	
+		Carton CartonesH[CANT_CARTONES];
+		Carton CartonesB[CANT_CARTONES];	
 		//int bola[90];	POSIBLE A AGREGAR		
 		
 	};
 	
-//CONSTRUCTOR
+//CONSTRUCTOR HUMANO
 Jugador crearJugador(char nombre[],char alias[],int dni)
 {
 	Jugador x = malloc(sizeof(struct JugadorE)); //Asigno memoria en el sistema para crear el jugador
@@ -32,23 +33,73 @@ Jugador crearJugador(char nombre[],char alias[],int dni)
 	
 	int i; //INDICE
 	
-	//int cantCartones = CantCartones();
-	//CON CUANTOS CARTONES QUIERE JUGAR? = 2
-	//cantCartones = 2;
-	//SE CREAN POR ENDE SOLO N CARTONES.
+	//CANTIDAD DE CARTONES
+	int CantCartones=elegirCantCarton();	
+	setCantCartones(x,CantCartones);
 	
-	//REEMPLAZAR CANT_CARTONES POR UNA FUNCION QUE PREGUNTE CON CUANTOS CARTONES QUIERE JUGAR 1 MIN 3 MAX.	
-	
-	for(i=0;i<CANT_CARTONES;i++) //CARGA EL MAXIMO DE CARTONES PERMITIDOS POR JUGADOR A ASIGNAR POR SISTEMA
+	for(i=0;i<getCantCartones(x);i++) //CARGA EL MAXIMO DE CARTONES PERMITIDOS POR JUGADOR A ASIGNAR POR EL USUARIO
 	{
-		x->Cartones[i] = crearCarton(); //CREA LOS CARTONES
-	}
+		x->CartonesH[i] = crearCarton(); //CREA LOS CARTONES HUMANO
+		x->CartonesB[i] = crearCarton(); //CREA LOS CARTONES BOT
+	}	
 	
-	return x; //RETORNA JUGADOR X QUE FUE GUARDADO EN MEMORIA PARA LA ASIGNACION DE DATOS
-	
+	return x; //RETORNA JUGADOR X QUE FUE GUARDADO EN MEMORIA PARA LA ASIGNACION DE DATOS	
 }
 
-//POSIBLEMENTE UN CONSTRUCTOR APARTE PARA EL BOT SIN EL DNI
+//MOSTRAR
+void mostrarJugador(Jugador x)
+{
+	
+	printf ("NOMBRE JUGADOR: [%s]\n",getNombre(x));	
+	printf ("NICK NAME: [%s]\n",getAlias(x));
+	printf ("DNI JUGADOR: [%d]\n",getDni(x));	
+	printf ("CANTIDAD DE CARTONES ASIGNADOS: [%d]\n\n",getCantCartones(x));
+	
+	int i;	
+	
+	//MUESTRA LOS CARTONES DEL JUGADOR
+	
+	printf ("CARTONES DEL JUGADOR:\n\n");
+	
+	for(i=0;i<getCantCartones(x);i++)
+	{
+		printf ("Carton Humano numero: [%d]\n",i+1);
+		mostrarCarton(x->CartonesH[i]);
+		printf("\n");	
+	}
+	
+	//MUESTRA LOS CARTONES DEL BOT
+	
+	printf ("CARTONES DEL BOT:\n\n");
+	
+	for(i=0;i<getCantCartones(x);i++)
+	{
+		printf ("Carton Bot numero: [%d]\n",i+1);
+		mostrarCarton(x->CartonesB[i]);
+		printf("\n");	
+	}
+}
+
+//FUNCIONES PRINCIPALES
+int elegirCantCarton()
+{
+	int cantCartones=0;
+	
+	printf ("Elija con cuantos cartones quiere jugar (Min 1 - Max 3): "); scanf ("%d",&cantCartones);
+	
+			while (cantCartones<1 || cantCartones>3)
+		{		
+			if (cantCartones != 1 && cantCartones != 2 && cantCartones != 3)
+			{
+				system("cls");
+				printf ("ELIGIO MAL!!!\n");			
+				printf ("Elija con cuantos cartones quiere jugar (Min 1 - Max 3): "); scanf ("%d",&cantCartones);
+				system("cls");
+			}					
+		}				
+	
+	return cantCartones;
+}
 
 //DESTRUCTOR
 void destruirJugador(Jugador x)

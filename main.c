@@ -9,8 +9,10 @@
 int main() {
 	
 	printf ("NAHUEL FLORES\n");
-	printf ("SEGUNDO COMMIT - ESTRUCTURA COMPLETA");
+	printf ("CUARTO COMMIT - FUNCIONES PRINCIPALES\n\n\n");
 	
+	Jugador j1 = crearJugador("Nahuel","Delbelt",40667557);
+	mostrarJugador(j1);
 	
 	return 0;
 }

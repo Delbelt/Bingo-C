@@ -11,6 +11,12 @@ Jugador crearJugador(char nombre[],char alias[],int dni);
 //DESTRUCTOR
 void destruirJugador(Jugador x);
 
+//MOSTRAR
+void mostrarJugador(Jugador x);
+
+//FUNCIONES PRINCIPALES
+int elegirCantCarton();
+
 //METODOS SET
 void setNombre(Jugador x, char nombre[]);
 void setAlias(Jugador x, char alias[]);
