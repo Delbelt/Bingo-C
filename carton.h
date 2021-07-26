@@ -12,7 +12,8 @@ Carton crearCarton();
 void mostrarCarton(Carton x);
 
 //FUNCIONES PRINCIPALES
-void cargarCarton(int carton[3][5]);
+void cargarCarton(int carton[][5]);
+int comprobarRepeticion (int carton[][5],int numVerificar);
 
 //DESTRUCTOR
 void destruirCarton(Carton x);
