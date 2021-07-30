@@ -8,7 +8,9 @@
 
 struct CartonE{
 	
-		int matrizCarton[3][5];	
+		int matrizCarton[3][5];
+		int posJugadas[3]; // 0 = 5 EN LINEA, 1 = 3 EN COLUMNA, 2 = BINGO;
+		float puntaje;
 };
 
 //CONSTRUCTOR
@@ -17,10 +19,15 @@ Carton crearCarton()
 	Carton x = malloc(sizeof(struct CartonE)); //Asigno memoria en el sistema para crear el Carton
 	
 	cargarCarton(x->matrizCarton);
-		
-	//FUNCION QUE CARGUE LA MATRIZ CON NUMEROS ALEATORIOS QUE NO SE REPITAN	
-	//cargarCarton(x->matriz)
-	//GENERA LA MATRIZ ALEATORIA PARA EL BINGO
+	
+	x->puntaje=0;
+	
+	int i;
+	
+	for(i=0;i<3;i++)
+	{
+		x->posJugadas[i]=0;
+	}
 	
 	return x; //RETORNA CARTON X QUE FUE GUARDADO EN MEMORIA PARA LA ASIGNACION DE DATOS	
 }
@@ -117,7 +124,7 @@ void marcarCarton(int carton[], int bolilla[], int jugada){
 void posJugadas(int posJug[],int posicion,int numero) //Para guardar la Bandera //TESTEAR Y CORREGIR
 {
 
-posJug[numero] = posicion;
+	posJug[numero] = posicion;
 	
 }
 
@@ -190,8 +197,9 @@ void cincoLinea(int vector[][5],int bolilla[],int jugadas,int bandera[]) //HACE 
 
 				printf ("5 EN LINEA! DE LA FILA: %d",largo+1);
 				printf ("\nJUGADAS NECESARIAS PARA 5 EN LINEA: %d\n\n",jugadas);
-				posJugadas(bandera,x+1,0); //MODIFICAR MAS ADELANTE (POSIBLEMENTE AGREGAR AL CARTON O AL JUGADOR UN ATRIBUTO "BANDERA" 							
-
+				
+				posJugadas(bandera,x+1,0);
+						
 				x=99;
 				j=99;
 				largo=99;
@@ -318,9 +326,31 @@ void bingo(int vector[][5],int bolilla[],int jugadas, int bandera[]) //COMPRUEBA
 		}	
 }
 
+//METODOS SET
+void setJugadas(Carton x, int pos, int valor)
+{
+	x->posJugadas[pos] = valor;
+}
+
+void setPuntaje(Carton x, float puntaje)
+{
+	x->puntaje = puntaje;
+}
+
+//METODOS GET
 int getCarton(Carton x,int i,int j)
 {
 	return x->matrizCarton[i][j];
+}
+
+int getJugadas(Carton x,int posJugada)
+{
+	return x->posJugadas[posJugada];
+}
+
+float getPuntaje(Carton x)
+{
+	return x->puntaje;
 }
 
 //DESTRUCTOR

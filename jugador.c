@@ -89,6 +89,8 @@ void mostrarCartones(Jugador x, int lugar) //TEST DEL JUEGO, MODIFICAR MAS ADELA
 {
 		int i,j;
 		
+		int bandera[3]={};
+		
 		printf ("\nCarton numero: [%d]\n",lugar+1);		
 		printf("\n");
 		
@@ -98,7 +100,7 @@ void mostrarCartones(Jugador x, int lugar) //TEST DEL JUEGO, MODIFICAR MAS ADELA
 		{
 			for(j=0;j<5;j++)
 			{
-				matriz[i][j] = getCarton(x->CartonesH[0],i,j);
+				matriz[i][j] = getCarton(x->CartonesH[lugar],i,j);
 			}	
 		}
 				
@@ -107,18 +109,187 @@ void mostrarCartones(Jugador x, int lugar) //TEST DEL JUEGO, MODIFICAR MAS ADELA
 			//marcarCarton(x->CartonesH[lugar],x->bola,i);
 			marcarCarton(matriz,x->bola,i);
 			mostrarCarton(matriz);
-			mostrarCarton(x->CartonesH[lugar]);
-			mostrarBolilla(x,i);
+			//mostrarCarton(x->CartonesH[lugar]);
+			//mostrarBolilla(x,i);
+			
 			system("pause");
-			system("cls");			
+			system("cls");
+						
+			if(bandera[0] == 0)
+			{
+				cincoLinea(x->CartonesH[lugar],x->bola,i,bandera);				
+			}
 			
-			//cincoLinea(x->CartonesH[0],x->bola,i,0);
-			//tresColumna(x->CartonesH[0],x->bola,i,0);
+			if(bandera[1] == 0)
+			{
+				tresColumna(x->CartonesH[lugar],x->bola,i,bandera);
+			}
 			
-			//bingo(x->CartonesH[0],x->bola,i,0);
+			if(bandera[2] == 0)
+			{
+				bingo(x->CartonesH[lugar],x->bola,i,bandera);
+			}			
+			
 		}
 		
+			setJugadas(x->CartonesH[lugar],0,bandera[0]);
+			setJugadas(x->CartonesH[lugar],1,bandera[1]);
+			setJugadas(x->CartonesH[lugar],2,bandera[2]);
+		
+			printf("EL VALOR DE 5 EN LINEA: %d\n",getJugadas(x->CartonesH[lugar],0));
+			printf("EL VALOR DE 3 EN COLUMNA ES: %d\n",getJugadas(x->CartonesH[lugar],1));
+			printf("EL VALOR DE BINGO ES: %d\n",getJugadas(x->CartonesH[lugar],2));
+
+			//printf("EL VALOR DE BANDERA ES: %d\n",bandera[0]);
+			
+			//setJugadas(x->CartonesH[0],0,bandera[0]);
+			
+			//printf("EL VALOR DE BANDERA REAL ES: %d",getJugadas(x->CartonesH[0],0));
+			
+			
+					
+			//printf(getJugadas(x->CartonesH[0],0));	
+
+		
 		//mostrarCarton(x->CartonesH[lugar]);
+}
+
+void moderadorInferiorLento(Jugador x, int lugar) //TEST DEL JUEGO, MODIFICAR MAS ADELANTE
+{
+		int i,j;
+		
+		int bandera[3]={};
+		
+		//printf ("\nCarton numero: [%d]\n",lugar+1);		
+		
+		int matriz[3][5]={};
+		
+		for(i=0;i<3;i++)
+		{
+			for(j=0;j<5;j++)
+			{
+				matriz[i][j] = getCarton(x->CartonesH[lugar],i,j);
+			}	
+		}
+		
+		//AGREGARLE CONTEXTO	
+		system("cls");	
+			
+		for(i=0;i<90;i++)
+		{			
+			printf ("\nCarton H numero: [%d]\n",lugar+1);	
+			marcarCarton(matriz,x->bola,i);
+			mostrarCarton(matriz);
+			printf("\n");
+			mostrarBolilla(x,i);
+			printf("\n");
+			
+			system("pause");
+			system("cls");
+						
+			if(bandera[0] == 0)
+			{
+				cincoLinea(x->CartonesH[lugar],x->bola,i,bandera);				
+			}
+			
+			if(bandera[1] == 0)
+			{
+				tresColumna(x->CartonesH[lugar],x->bola,i,bandera);
+			}
+			
+			if(bandera[2] == 0)
+			{
+				bingo(x->CartonesH[lugar],x->bola,i,bandera);
+			}			
+			
+		}
+		
+			setJugadas(x->CartonesH[lugar],0,bandera[0]);
+			setJugadas(x->CartonesH[lugar],1,bandera[1]);
+			setJugadas(x->CartonesH[lugar],2,bandera[2]);
+		
+			printf("EL VALOR DE 5 EN LINEA: %d\n",getJugadas(x->CartonesH[lugar],0));
+			printf("EL VALOR DE 3 EN COLUMNA ES: %d\n",getJugadas(x->CartonesH[lugar],1));
+			printf("EL VALOR DE BINGO ES: %d\n",getJugadas(x->CartonesH[lugar],2));
+}
+
+void moderadorInferiorRapido(Jugador x, int lugar) //TEST DEL JUEGO, MODIFICAR MAS ADELANTE
+{
+		int i,j;
+		
+		int bandera[3]={};		
+
+		printf ("\nCarton H numero: [%d]\n",lugar+1);	
+		mostrarCarton(x->CartonesH[lugar]);	
+		printf("\n");
+		
+		int matriz[3][5]={};
+		
+		for(i=0;i<3;i++)
+		{
+			for(j=0;j<5;j++)
+			{
+				matriz[i][j] = getCarton(x->CartonesH[lugar],i,j);
+			}	
+		}
+				
+		for(i=0;i<90;i++)
+		{
+								
+			if(bandera[0] == 0)
+			{
+				cincoLinea(x->CartonesH[lugar],x->bola,i,bandera);				
+			}
+			
+			if(bandera[1] == 0)
+			{
+				tresColumna(x->CartonesH[lugar],x->bola,i,bandera);
+			}
+			
+			if(bandera[2] == 0)
+			{
+				bingo(x->CartonesH[lugar],x->bola,i,bandera);
+			}			
+			
+		}		
+			setJugadas(x->CartonesH[lugar],0,bandera[0]);
+			setJugadas(x->CartonesH[lugar],1,bandera[1]);
+			setJugadas(x->CartonesH[lugar],2,bandera[2]);
+		
+			printf("EL VALOR DE 5 EN LINEA: %d\n",getJugadas(x->CartonesH[lugar],0));
+			printf("EL VALOR DE 3 EN COLUMNA ES: %d\n",getJugadas(x->CartonesH[lugar],1));
+			printf("EL VALOR DE BINGO ES: %d\n",getJugadas(x->CartonesH[lugar],2));
+}
+
+void moderadorSuperiorLento(Jugador x)
+{	
+	int i;
+
+	
+		for(i=0;i<x->cantCartones;i++)
+					{	
+					printf ("\n\nCARTON JUGADOR HUMANO NUMERO [%d]\n",i+1);	
+					moderadorInferiorLento(x,i);
+					//printf ("CARTON BOT NUMERO [%d]\n\n",i+1);
+					//moderadorInferiorRapido(cartonBot[a].banderaPos,cartonBot[a].matriz,jugador.bola);						
+					}
+}
+
+void moderadorSuperiorRapido(Jugador x)
+{	
+	int i;
+	
+	//AGREGAR CONTEXTO
+	system("cls");
+	
+		for(i=0;i<x->cantCartones;i++)
+					{
+					printf ("CARTON JUGADOR HUMANO NUMERO [%d]\n",i+1);	
+					//mostrarCartones(x,i);
+					moderadorInferiorRapido(x,i);
+					//printf ("CARTON BOT NUMERO [%d]\n\n",i+1);
+					//moderadorInferiorRapido(cartonBot[a].banderaPos,cartonBot[a].matriz,jugador.bola);						
+					}
 }
 
 //////////FUNCIONES PRINCIPALES//////////
@@ -199,14 +370,6 @@ void reiniciarBola(int bolilla[])
 		bolilla[i] = -1;
 	}
 }
-
-//////////JUEGO//////////
-
-
-//VOID CINCO EN LINEA
-//VOID 3 EN COLUMNA
-//VOID BINGO
-//void marcarCarton(int carton[], int bolilla[], int jugada)
 
 //////////MODERACION DEL JUEGO//////////
 
