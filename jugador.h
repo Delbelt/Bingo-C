@@ -13,25 +13,29 @@ void destruirJugador(Jugador x);
 
 //MOSTRAR
 void mostrarJugador(Jugador x);
-void mostrarCartones(Jugador x, int lugar);
+void mostrarCartones(Jugador x);
 
 //FUNCIONES PRINCIPALES
+void modificarJugador(Jugador x);
 int elegirCantCarton();
 int comprobarBolilla(int vector[],int num);
 void sacarBolilla(int vector[]);
 void mostrarBolilla(Jugador x, int jugada);
 void reiniciarBola(int bolilla[]);
 
-//JUEGO
-//VOID CINCO EN LINEA
-//VOID 3 EN COLUMNA
-//VOID BINGO
-//void marcarCarton(int carton[], int bolilla[], int jugada)
-
 //MODERACION DEL JUEGO
-void reiniciarJuego(Jugador x); //REINICIAR JUEGO
+void reiniciarJuego(Jugador x);
+void moderadorInferiorLento(Jugador x, int lugar);
+void moderadorInferiorRapido(Jugador x, int lugar);
+void moderadorSuperiorLento(Jugador x);
+void moderadorSuperiorRapido(Jugador x);
+void ganadorJuego(Jugador x);
+void resumen(Jugador x);
 
 //PUNTAJE
+void Calcularpuntajes(Jugador x);
+void guardarPuntajes(Jugador x);
+void mostrarPuntajes();
 
 //METODOS SET
 void setNombre(Jugador x, char nombre[]);

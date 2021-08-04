@@ -48,9 +48,14 @@ void mostrarCarton(Carton x)
 		for(j=0;j<subIndice;j++)
 		{	
 		
-			if(x->matrizCarton[i][j]<10)
+			if(x->matrizCarton[i][j]<10 && x->matrizCarton[i][j]>0)
 			{
 				printf ("  %d ",x->matrizCarton[i][j]);	
+			}
+			
+			else if(x->matrizCarton[i][j]<0)
+			{
+				printf (" %d  ",x->matrizCarton[i][j]);	
 			}
 			
 			else
@@ -60,10 +65,57 @@ void mostrarCarton(Carton x)
 			
 		}
 						
-			printf ("|\n");
+			printf ("| \n");
 	}
 	
 	printf (" --------------------\n");
+	
+}
+
+//MOSTRAR
+void mostrarCartonMarcado(Carton x)
+{
+	int i,j;
+	
+	int indice = 3;
+	int subIndice = 5;
+	
+	printf (" ------------------------------ \n");
+	
+	for(i=0;i<indice;i++)
+	{		
+		printf ("|");
+		for(j=0;j<subIndice;j++)
+		{	
+		
+			if(x->matrizCarton[i][j]<10 && x->matrizCarton[i][j]>0)
+			{
+				printf ("  %d ",x->matrizCarton[i][j]);	
+			}	
+
+			
+			if(x->matrizCarton[i][j]<0 && x->matrizCarton[i][j]>-10)
+			{
+				printf ("  %d  ",x->matrizCarton[i][j]);	
+			}
+			
+			if(x->matrizCarton[i][j]<=-10)
+			{
+				printf (" %d  ",x->matrizCarton[i][j]);	
+			}
+			
+			if(x->matrizCarton[i][j]>=10)
+			{
+				printf (" %d ",x->matrizCarton[i][j]);		
+			}	
+	
+			
+		}
+						
+			printf ("|\n");
+	}
+	
+	printf (" ------------------------------ \n");
 }
 
 //////////FUNCIONES PRINCIPALES//////////
@@ -107,7 +159,8 @@ int comprobarRepeticion (int carton[][5],int numVerificar)//COMPRUEBA SI HAY REP
 			return 0; //FALSE
 }
 
-void marcarCarton(int carton[], int bolilla[], int jugada){
+void marcarCarton(int carton[], int bolilla[], int jugada)
+{
 	
 	int i;	
 	
@@ -338,12 +391,12 @@ void setPuntaje(Carton x, float puntaje)
 }
 
 //METODOS GET
-int getCarton(Carton x,int i,int j)
+int getCarton(Carton x, int i, int j)
 {
 	return x->matrizCarton[i][j];
 }
 
-int getJugadas(Carton x,int posJugada)
+int getJugadas(Carton x, int posJugada)
 {
 	return x->posJugadas[posJugada];
 }
