@@ -8,7 +8,7 @@
 
 int main() {
 	
-	Jugador j1 = crearJugador("Nombre","Alias",99999999);
+	Jugador j1 = crearJugador("Nombre","Alias",999999999);
 	
 	//mostrarJugador(j1);
 	//mostrarCartones(j1);		
